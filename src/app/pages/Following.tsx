@@ -39,18 +39,19 @@ export function Following() {
   };
 
   return (
-    <div className="min-h-screen bg-neutral-50">
+    <div className="min-h-screen bg-[linear-gradient(180deg,#fcfcff_0%,#f7f5ff_30%,#f8fafc_100%)]">
       <NavigationBar currentUser={currentUser} />
 
       {/* Main Content */}
-      <main className="pt-16 pb-20 md:pb-8">
-        <div className="max-w-2xl mx-auto px-4 py-6">
+      <main className="relative overflow-hidden pb-20 pt-16 md:pb-8">
+        <div className="absolute left-[-6rem] top-28 h-72 w-72 rounded-full bg-violet-300/15 blur-3xl" />
+        <div className="relative mx-auto max-w-2xl px-4 py-8">
           {/* Header */}
-          <div className="bg-white rounded-2xl shadow-sm mb-6">
-            <div className="p-4 flex items-center gap-4 border-b border-neutral-200">
+          <div className="mb-6 overflow-hidden rounded-[28px] border border-white/70 bg-white/88 shadow-[0_24px_70px_-42px_rgba(15,23,42,0.45)] backdrop-blur-xl">
+            <div className="flex items-center gap-4 border-b border-neutral-200 p-4">
               <Link
                 to={`/profile/${userId}`}
-                className="p-2 rounded-lg hover:bg-neutral-100 transition-colors"
+                className="rounded-full border border-neutral-200 bg-white/90 p-2 transition-colors hover:bg-neutral-100"
               >
                 <ArrowLeft size={20} />
               </Link>

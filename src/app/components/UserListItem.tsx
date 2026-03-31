@@ -30,9 +30,9 @@ export function UserListItem({ user, onFollowToggle }: UserListItemProps) {
   };
 
   return (
-    <div className="flex items-center justify-between p-4 hover:bg-neutral-50 transition-colors">
-      <Link to={`/profile/${user.id}`} className="flex items-center gap-3 flex-1">
-        <Avatar className="w-12 h-12">
+    <div className="flex items-center justify-between p-4 transition-colors hover:bg-violet-50/40">
+      <Link to={`/profile/${user.id}`} className="flex flex-1 items-center gap-3">
+        <Avatar className="h-12 w-12 ring-2 ring-violet-100">
           <AvatarImage src={user.avatar} alt={user.name} />
           <AvatarFallback>{user.name.charAt(0)}</AvatarFallback>
         </Avatar>
@@ -51,8 +51,8 @@ export function UserListItem({ user, onFollowToggle }: UserListItemProps) {
         variant={isFollowing ? 'outline' : 'default'}
         className={`rounded-full px-6 ${
           isFollowing
-            ? 'border-neutral-300 text-neutral-700 hover:bg-neutral-100'
-            : 'bg-blue-600 hover:bg-blue-700 text-white'
+            ? 'border-neutral-300 bg-white/90 text-neutral-700 hover:bg-neutral-100'
+            : 'bg-gradient-to-r from-slate-950 via-violet-700 to-amber-400 text-white shadow-[0_16px_30px_-18px_rgba(76,29,149,0.8)] hover:opacity-95'
         }`}
       >
         {isFollowing ? 'Following' : 'Follow'}

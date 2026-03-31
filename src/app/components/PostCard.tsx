@@ -43,11 +43,12 @@ export function PostCard({ post, onComment, onLikeToggle }: PostCardProps) {
   };
 
   return (
-    <Card className="mb-4 overflow-hidden border border-neutral-200 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+    <Card className="mb-5 overflow-hidden rounded-[28px] border border-white/70 bg-white/85 shadow-[0_24px_70px_-42px_rgba(15,23,42,0.5)] backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_32px_90px_-42px_rgba(76,29,149,0.35)]">
+      <div className="h-1 w-full bg-gradient-to-r from-slate-950 via-violet-700 to-amber-400" />
       {/* Header */}
-      <div className="p-4 flex items-center justify-between">
-        <Link to={`/profile/${post.userId}`} className="flex items-center gap-3 hover:opacity-80 transition-opacity">
-          <Avatar className="w-10 h-10">
+      <div className="flex items-center justify-between p-5">
+        <Link to={`/profile/${post.userId}`} className="flex items-center gap-3 transition-opacity hover:opacity-85">
+          <Avatar className="h-11 w-11 ring-2 ring-violet-100">
             <AvatarImage src={post.avatar} alt={post.username} />
             <AvatarFallback>{post.username.charAt(0).toUpperCase()}</AvatarFallback>
           </Avatar>
@@ -56,58 +57,67 @@ export function PostCard({ post, onComment, onLikeToggle }: PostCardProps) {
             <p className="text-sm text-neutral-500">{post.timestamp}</p>
           </div>
         </Link>
+        <span className="rounded-full border border-violet-100 bg-violet-50/80 px-3 py-1 text-[0.68rem] font-medium uppercase tracking-[0.24em] text-violet-700">
+          ORO
+        </span>
       </div>
 
       {/* Content */}
-      <div className="px-4 pb-3">
-        <p className="text-neutral-800 leading-relaxed">{post.content}</p>
+      <div className="px-5 pb-4">
+        <p className="leading-7 text-neutral-800">{post.content}</p>
       </div>
 
       {/* Image */}
       {post.image && (
-        <div className="w-full">
+        <div className="mx-5 mb-4 overflow-hidden rounded-[24px]">
           <ImageWithFallback
             src={post.image}
             alt="Post content"
-            className="w-full h-auto object-cover"
+            className="h-auto w-full object-cover"
           />
         </div>
       )}
 
       {/* Actions */}
-      <div className="px-4 py-3 flex items-center justify-between border-t border-neutral-100">
-        <div className="flex items-center gap-6">
+      <div className="flex items-center justify-between border-t border-neutral-100/80 px-5 py-4">
+        <div className="flex items-center gap-3">
           <button
             onClick={handleLike}
             disabled={isLiking}
-            className="flex items-center gap-2 text-neutral-600 hover:text-blue-600 transition-colors group"
+            className={`group flex items-center gap-2 rounded-full px-3 py-2 text-sm transition-colors ${
+              isLiked
+                ? 'bg-violet-50 text-violet-700'
+                : 'text-neutral-600 hover:bg-neutral-100 hover:text-violet-700'
+            }`}
           >
             <Heart
               size={20}
-              className={`${isLiked ? 'fill-blue-600 text-blue-600' : 'group-hover:scale-110'} transition-transform`}
+              className={`${isLiked ? 'fill-violet-700 text-violet-700' : 'group-hover:scale-110'} transition-transform`}
             />
-            <span className={`text-sm ${isLiked ? 'text-blue-600 font-medium' : ''}`}>{likes}</span>
+            <span className={isLiked ? 'font-medium text-violet-700' : ''}>{likes}</span>
           </button>
 
           <button
             onClick={() => onComment?.(post.id)}
-            className="flex items-center gap-2 text-neutral-600 hover:text-blue-600 transition-colors group"
+            className="group flex items-center gap-2 rounded-full px-3 py-2 text-sm text-neutral-600 transition-colors hover:bg-neutral-100 hover:text-violet-700"
           >
             <MessageCircle size={20} className="group-hover:scale-110 transition-transform" />
-            <span className="text-sm">{post.comments}</span>
+            <span>{post.comments}</span>
           </button>
 
-          <button className="flex items-center gap-2 text-neutral-600 hover:text-blue-600 transition-colors group">
+          <button className="group flex items-center gap-2 rounded-full px-3 py-2 text-sm text-neutral-600 transition-colors hover:bg-neutral-100 hover:text-violet-700">
             <Share2 size={20} className="group-hover:scale-110 transition-transform" />
-            <span className="text-sm">{post.shares}</span>
+            <span>{post.shares}</span>
           </button>
         </div>
 
         <button
           onClick={() => setIsSaved(!isSaved)}
-          className="text-neutral-600 hover:text-blue-600 transition-colors"
+          className={`rounded-full p-2 transition-colors ${
+            isSaved ? 'bg-amber-50 text-amber-500' : 'text-neutral-600 hover:bg-neutral-100 hover:text-amber-500'
+          }`}
         >
-          <Bookmark size={20} className={isSaved ? 'fill-blue-600 text-blue-600' : ''} />
+          <Bookmark size={20} className={isSaved ? 'fill-amber-500 text-amber-500' : ''} />
         </button>
       </div>
     </Card>

@@ -1,6 +1,7 @@
 import { Settings, Grid3X3, List } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router';
+import { BrandLogo } from '../components/BrandLogo';
 import { NavigationBar } from '../components/NavigationBar';
 import { PostCard } from '../components/PostCard';
 import { Avatar, AvatarFallback, AvatarImage } from '../components/ui/avatar';
@@ -72,11 +73,13 @@ export function Profile() {
 
   if (loading || !profileUser) {
     return (
-      <div className="min-h-screen bg-neutral-50">
+      <div className="min-h-screen bg-[linear-gradient(180deg,#fcfcff_0%,#f7f5ff_30%,#f8fafc_100%)]">
         <NavigationBar currentUser={currentUser} />
         <main className="pt-16 pb-20 md:pb-8">
           <div className="max-w-4xl mx-auto px-4 py-6">
-            <p className="text-neutral-600">Loading profile...</p>
+            <div className="rounded-[28px] border border-white/70 bg-white/85 px-6 py-12 text-center text-neutral-600 shadow-[0_24px_70px_-42px_rgba(15,23,42,0.4)]">
+              Loading profile...
+            </div>
           </div>
         </main>
       </div>
@@ -84,17 +87,25 @@ export function Profile() {
   }
 
   return (
-    <div className="min-h-screen bg-neutral-50">
+    <div className="min-h-screen bg-[linear-gradient(180deg,#fcfcff_0%,#f7f5ff_30%,#f8fafc_100%)]">
       <NavigationBar currentUser={currentUser} />
 
       {/* Main Content */}
-      <main className="pt-16 pb-20 md:pb-8">
-        <div className="max-w-4xl mx-auto px-4 py-6">
+      <main className="relative overflow-hidden pb-20 pt-16 md:pb-8">
+        <div className="absolute left-[-7rem] top-24 h-80 w-80 rounded-full bg-violet-300/15 blur-3xl" />
+        <div className="absolute right-[-7rem] top-44 h-80 w-80 rounded-full bg-amber-200/20 blur-3xl" />
+        <div className="relative mx-auto max-w-4xl px-4 py-8">
           {/* Profile Header */}
-          <div className="bg-white rounded-2xl shadow-sm p-6 md:p-8 mb-6">
+          <div className="mb-6 overflow-hidden rounded-[32px] border border-white/70 bg-white/88 p-6 shadow-[0_30px_80px_-45px_rgba(15,23,42,0.45)] backdrop-blur-xl md:p-8">
+            <div className="mb-6 flex flex-wrap items-center justify-between gap-4">
+              <BrandLogo size="sm" showTagline />
+              <div className="rounded-full border border-violet-100 bg-violet-50/70 px-4 py-2 text-sm text-violet-700">
+                Curated profile
+              </div>
+            </div>
             <div className="flex flex-col md:flex-row gap-6">
               {/* Avatar */}
-              <Avatar className="w-32 h-32 md:w-40 md:h-40 flex-shrink-0 mx-auto md:mx-0">
+              <Avatar className="mx-auto h-32 w-32 flex-shrink-0 ring-4 ring-violet-100 md:mx-0 md:h-40 md:w-40">
                 <AvatarImage src={profileUser.avatar} alt={profileUser.name} />
                 <AvatarFallback className="text-3xl">{profileUser.name.charAt(0)}</AvatarFallback>
               </Avatar>
@@ -112,7 +123,7 @@ export function Profile() {
                   <div className="flex gap-2">
                     {isOwnProfile ? (
                       <>
-                        <Button variant="outline" className="rounded-full px-6">
+                        <Button variant="outline" className="rounded-full border-neutral-300 bg-white/90 px-6">
                           <Settings size={18} className="mr-2" />
                           Edit Profile
                         </Button>
@@ -123,13 +134,13 @@ export function Profile() {
                           onClick={handleFollow}
                           className={`rounded-full px-6 ${
                             profileUser.isFollowing
-                              ? 'bg-white text-neutral-700 border border-neutral-300 hover:bg-neutral-100'
-                              : 'bg-blue-600 hover:bg-blue-700 text-white'
+                              ? 'border border-neutral-300 bg-white text-neutral-700 hover:bg-neutral-100'
+                              : 'bg-gradient-to-r from-slate-950 via-violet-700 to-amber-400 text-white shadow-[0_16px_30px_-18px_rgba(76,29,149,0.8)] hover:opacity-95'
                           }`}
                         >
                           {profileUser.isFollowing ? 'Following' : 'Follow'}
                         </Button>
-                        <Button variant="outline" className="rounded-full px-4">
+                        <Button variant="outline" className="rounded-full border-neutral-300 bg-white/90 px-4">
                           Message
                         </Button>
                       </>
@@ -142,21 +153,21 @@ export function Profile() {
                 {error && <p className="text-sm text-red-600 mb-3">{error}</p>}
 
                 {/* Stats */}
-                <div className="flex gap-6 justify-center md:justify-start">
-                  <div>
+                <div className="flex flex-wrap gap-3 justify-center md:justify-start">
+                  <div className="min-w-[92px] rounded-2xl border border-violet-100 bg-violet-50/50 px-4 py-3">
                     <p className="font-bold text-neutral-900">{posts.length}</p>
                     <p className="text-sm text-neutral-600">Posts</p>
                   </div>
                   <Link
                     to={`/profile/${profileUser.id}/followers`}
-                    className="hover:opacity-80 transition-opacity"
+                    className="min-w-[92px] rounded-2xl border border-neutral-200 bg-white/80 px-4 py-3 transition-opacity hover:opacity-80"
                   >
                     <p className="font-bold text-neutral-900">{profileUser.followers}</p>
                     <p className="text-sm text-neutral-600">Followers</p>
                   </Link>
                   <Link
                     to={`/profile/${profileUser.id}/following`}
-                    className="hover:opacity-80 transition-opacity"
+                    className="min-w-[92px] rounded-2xl border border-neutral-200 bg-white/80 px-4 py-3 transition-opacity hover:opacity-80"
                   >
                     <p className="font-bold text-neutral-900">{profileUser.following}</p>
                     <p className="text-sm text-neutral-600">Following</p>
@@ -167,18 +178,18 @@ export function Profile() {
           </div>
 
           {/* Posts Section */}
-          <div className="bg-white rounded-2xl shadow-sm overflow-hidden">
+          <div className="overflow-hidden rounded-[32px] border border-white/70 bg-white/88 shadow-[0_30px_80px_-45px_rgba(15,23,42,0.45)] backdrop-blur-xl">
             <Tabs defaultValue="posts" className="w-full">
               <div className="border-b border-neutral-200 px-4">
                 <div className="flex items-center justify-between">
                   <TabsList className="bg-transparent">
-                    <TabsTrigger value="posts" className="data-[state=active]:border-b-2 data-[state=active]:border-blue-600 rounded-none">
+                    <TabsTrigger value="posts" className="rounded-none data-[state=active]:border-b-2 data-[state=active]:border-violet-700">
                       Posts
                     </TabsTrigger>
-                    <TabsTrigger value="media" className="data-[state=active]:border-b-2 data-[state=active]:border-blue-600 rounded-none">
+                    <TabsTrigger value="media" className="rounded-none data-[state=active]:border-b-2 data-[state=active]:border-violet-700">
                       Media
                     </TabsTrigger>
-                    <TabsTrigger value="likes" className="data-[state=active]:border-b-2 data-[state=active]:border-blue-600 rounded-none">
+                    <TabsTrigger value="likes" className="rounded-none data-[state=active]:border-b-2 data-[state=active]:border-violet-700">
                       Likes
                     </TabsTrigger>
                   </TabsList>
@@ -188,7 +199,7 @@ export function Profile() {
                     <button
                       onClick={() => setView('grid')}
                       className={`p-2 rounded-lg transition-colors ${
-                        view === 'grid' ? 'bg-blue-100 text-blue-600' : 'text-neutral-600 hover:bg-neutral-100'
+                        view === 'grid' ? 'bg-violet-100 text-violet-700' : 'text-neutral-600 hover:bg-neutral-100'
                       }`}
                     >
                       <Grid3X3 size={20} />
@@ -196,7 +207,7 @@ export function Profile() {
                     <button
                       onClick={() => setView('list')}
                       className={`p-2 rounded-lg transition-colors ${
-                        view === 'list' ? 'bg-blue-100 text-blue-600' : 'text-neutral-600 hover:bg-neutral-100'
+                        view === 'list' ? 'bg-violet-100 text-violet-700' : 'text-neutral-600 hover:bg-neutral-100'
                       }`}
                     >
                       <List size={20} />
@@ -213,9 +224,9 @@ export function Profile() {
                     ))}
                   </div>
                 ) : (
-                  <div className="grid grid-cols-3 gap-1">
+                  <div className="grid grid-cols-3 gap-2 p-3">
                     {posts.map((post) => (
-                      <div key={post.id} className="aspect-square relative group cursor-pointer overflow-hidden">
+                      <div key={post.id} className="group relative aspect-square cursor-pointer overflow-hidden rounded-[20px]">
                         {post.image ? (
                           <ImageWithFallback
                             src={post.image}
@@ -223,7 +234,7 @@ export function Profile() {
                             className="w-full h-full object-cover group-hover:opacity-90 transition-opacity"
                           />
                         ) : (
-                          <div className="w-full h-full bg-neutral-100 flex items-center justify-center p-4">
+                          <div className="flex h-full w-full items-center justify-center bg-neutral-100 p-4">
                             <p className="text-sm text-neutral-600 line-clamp-3">{post.content}</p>
                           </div>
                         )}
@@ -246,11 +257,11 @@ export function Profile() {
               </TabsContent>
 
               <TabsContent value="media" className="mt-0">
-                <div className="grid grid-cols-3 gap-1">
+                <div className="grid grid-cols-3 gap-2 p-3">
                   {posts
                     .filter((post) => post.image)
                     .map((post) => (
-                      <div key={post.id} className="aspect-square relative group cursor-pointer overflow-hidden">
+                      <div key={post.id} className="group relative aspect-square cursor-pointer overflow-hidden rounded-[20px]">
                         <ImageWithFallback
                           src={post.image!}
                           alt="Post"

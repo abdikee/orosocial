@@ -39,15 +39,19 @@ export function CreatePostModal({ open, onClose, currentUser, onCreatePost }: Cr
 
   return (
     <Dialog open={open} onOpenChange={onClose}>
-      <DialogContent className="sm:max-w-[600px]">
+      <DialogContent className="overflow-hidden rounded-[32px] border border-white/70 bg-white/90 p-0 shadow-[0_40px_120px_-50px_rgba(15,23,42,0.55)] backdrop-blur-xl sm:max-w-[600px]">
+        <div className="h-1 w-full bg-gradient-to-r from-slate-950 via-violet-700 to-amber-400" />
         <DialogHeader>
-          <DialogTitle>Create Post</DialogTitle>
+          <div className="px-6 pt-6">
+            <DialogTitle className="text-xl font-semibold text-neutral-900">Create Post</DialogTitle>
+            <p className="mt-1 text-sm text-neutral-500">Share a polished moment with your circle.</p>
+          </div>
         </DialogHeader>
 
-        <div className="space-y-4 mt-4">
+        <div className="mt-4 space-y-5 px-6 pb-6">
           {/* User Info */}
-          <div className="flex items-center gap-3">
-            <Avatar className="w-10 h-10">
+          <div className="flex items-center gap-3 rounded-2xl border border-violet-100 bg-violet-50/40 p-3">
+            <Avatar className="h-11 w-11 ring-2 ring-white">
               <AvatarImage src={currentUser?.avatar} alt={currentUser?.name} />
               <AvatarFallback>{(currentUser?.name || 'U').charAt(0)}</AvatarFallback>
             </Avatar>
@@ -62,16 +66,16 @@ export function CreatePostModal({ open, onClose, currentUser, onCreatePost }: Cr
             value={content}
             onChange={(e) => setContent(e.target.value)}
             placeholder="What's on your mind?"
-            className="min-h-[120px] resize-none border-neutral-300 focus:border-blue-500"
+            className="min-h-[140px] resize-none rounded-[24px] border-neutral-200 bg-white/90 px-5 py-4 focus:border-violet-400"
           />
 
           {/* Image Preview */}
           {imagePreview && (
-            <div className="relative rounded-lg overflow-hidden">
+            <div className="relative overflow-hidden rounded-[24px] border border-neutral-200">
               <img src={imagePreview} alt="Preview" className="w-full h-auto" />
               <button
                 onClick={() => setImagePreview(null)}
-                className="absolute top-2 right-2 p-1 bg-neutral-900/70 rounded-full text-white hover:bg-neutral-900 transition-colors"
+                className="absolute right-3 top-3 rounded-full bg-neutral-900/70 p-1.5 text-white transition-colors hover:bg-neutral-900"
               >
                 <X size={18} />
               </button>
@@ -79,7 +83,7 @@ export function CreatePostModal({ open, onClose, currentUser, onCreatePost }: Cr
           )}
 
           {/* Actions */}
-          <div className="flex items-center justify-between pt-4 border-t border-neutral-200">
+          <div className="flex items-center justify-between border-t border-neutral-200 pt-4">
             <div className="flex items-center gap-2">
               <label className="cursor-pointer">
                 <input
@@ -88,7 +92,7 @@ export function CreatePostModal({ open, onClose, currentUser, onCreatePost }: Cr
                   onChange={handleImageUpload}
                   className="hidden"
                 />
-                <div className="p-2 rounded-lg text-blue-600 hover:bg-blue-50 transition-colors flex items-center gap-2">
+                <div className="flex items-center gap-2 rounded-full border border-violet-100 bg-violet-50/60 px-4 py-2 text-violet-700 transition-colors hover:bg-violet-100/70">
                   <Image size={20} />
                   <span className="text-sm font-medium">Add Photo</span>
                 </div>
@@ -99,14 +103,14 @@ export function CreatePostModal({ open, onClose, currentUser, onCreatePost }: Cr
               <Button
                 variant="outline"
                 onClick={onClose}
-                className="rounded-full"
+                className="rounded-full border-neutral-300 bg-white/80"
               >
                 Cancel
               </Button>
               <Button
                 onClick={handleSubmit}
                 disabled={!content.trim() && !imagePreview}
-                className="rounded-full bg-blue-600 hover:bg-blue-700 disabled:bg-neutral-300"
+                className="rounded-full bg-gradient-to-r from-slate-950 via-violet-700 to-amber-400 text-white shadow-[0_16px_30px_-18px_rgba(76,29,149,0.8)] hover:opacity-95 disabled:bg-neutral-300"
               >
                 Post
               </Button>

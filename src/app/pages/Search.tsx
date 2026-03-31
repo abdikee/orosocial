@@ -44,15 +44,17 @@ export function Search() {
   };
 
   return (
-    <div className="min-h-screen bg-neutral-50">
+    <div className="min-h-screen bg-[linear-gradient(180deg,#fcfcff_0%,#f7f5ff_30%,#f8fafc_100%)]">
       <NavigationBar currentUser={currentUser} />
 
       {/* Main Content */}
-      <main className="pt-16 pb-20 md:pb-8">
-        <div className="max-w-2xl mx-auto px-4 py-6">
+      <main className="relative overflow-hidden pb-20 pt-16 md:pb-8">
+        <div className="absolute left-[-7rem] top-24 h-72 w-72 rounded-full bg-violet-300/15 blur-3xl" />
+        <div className="relative mx-auto max-w-2xl px-4 py-8">
           {/* Search Header */}
-          <div className="mb-6">
-            <h1 className="text-2xl font-bold text-neutral-900 mb-4">Search</h1>
+          <div className="mb-6 rounded-[28px] border border-white/70 bg-white/85 p-6 shadow-[0_24px_70px_-42px_rgba(15,23,42,0.45)] backdrop-blur-xl">
+            <h1 className="mb-2 text-2xl font-bold text-neutral-900">Search</h1>
+            <p className="mb-4 text-neutral-600">Discover creators, friends, and inspiring profiles.</p>
             
             {/* Search Input */}
             <div className="relative">
@@ -62,14 +64,14 @@ export function Search() {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search for people..."
-                className="pl-10 rounded-full border-neutral-300 focus:border-blue-500 h-12"
+                className="h-12 rounded-full border-neutral-200 bg-white/90 pl-10 focus:border-violet-400"
               />
             </div>
           </div>
 
           {/* Results */}
-          <div className="bg-white rounded-2xl shadow-sm overflow-hidden">
-            <div className="p-4 border-b border-neutral-200">
+          <div className="overflow-hidden rounded-[28px] border border-white/70 bg-white/88 shadow-[0_24px_70px_-42px_rgba(15,23,42,0.45)] backdrop-blur-xl">
+            <div className="border-b border-neutral-200 p-4">
               <h2 className="font-semibold text-neutral-900">
                 {searchQuery ? `Results for "${searchQuery}"` : 'Suggested People'}
               </h2>

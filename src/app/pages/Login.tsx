@@ -64,7 +64,7 @@ export function Login() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="your@email.com"
-                  className="pl-10 rounded-lg border-neutral-300 focus:border-blue-500"
+                  className="pl-10 rounded-lg border-neutral-300 bg-white/90 focus:border-violet-400"
                   disabled={authDisabled}
                   required
                 />
@@ -82,7 +82,7 @@ export function Login() {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="••••••••"
-                  className="pl-10 rounded-lg border-neutral-300 focus:border-blue-500"
+                  className="pl-10 rounded-lg border-neutral-300 bg-white/90 focus:border-violet-400"
                   disabled={authDisabled}
                   required
                 />
@@ -91,7 +91,7 @@ export function Login() {
 
             {/* Forgot Password */}
             <div className="flex justify-end">
-              <a href="#" className="text-sm text-blue-600 hover:underline">
+              <a href="#" className="text-sm text-violet-700 hover:underline">
                 Forgot password?
               </a>
             </div>
@@ -100,7 +100,7 @@ export function Login() {
             <Button
               type="submit"
               disabled={authDisabled || isSubmitting}
-              className="w-full rounded-lg bg-blue-600 hover:bg-blue-700 h-11 text-base font-medium"
+              className="h-11 w-full rounded-lg bg-gradient-to-r from-slate-950 via-violet-700 to-amber-400 text-base font-medium text-white shadow-[0_16px_30px_-18px_rgba(76,29,149,0.8)] hover:opacity-95"
             >
               {authDisabled ? 'Setup required' : isSubmitting ? 'Signing in...' : 'Sign In'}
               <ArrowRight className="ml-2" size={18} />
@@ -165,7 +165,7 @@ export function Login() {
           {/* Sign Up Link */}
           <p className="mt-6 text-center text-sm text-neutral-600">
             Don't have an account?{' '}
-            <Link to="/signup" className="text-blue-600 hover:underline font-medium">
+            <Link to="/signup" className="font-medium text-violet-700 hover:underline">
               Sign up
             </Link>
           </p>

@@ -70,7 +70,7 @@ export function SignUp() {
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   placeholder="John Doe"
-                  className="pl-10 rounded-lg border-neutral-300 focus:border-blue-500"
+                  className="pl-10 rounded-lg border-neutral-300 bg-white/90 focus:border-violet-400"
                   disabled={authDisabled}
                   required
                 />
@@ -88,7 +88,7 @@ export function SignUp() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="your@email.com"
-                  className="pl-10 rounded-lg border-neutral-300 focus:border-blue-500"
+                  className="pl-10 rounded-lg border-neutral-300 bg-white/90 focus:border-violet-400"
                   disabled={authDisabled}
                   required
                 />
@@ -106,7 +106,7 @@ export function SignUp() {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="••••••••"
-                  className="pl-10 rounded-lg border-neutral-300 focus:border-blue-500"
+                  className="pl-10 rounded-lg border-neutral-300 bg-white/90 focus:border-violet-400"
                   disabled={authDisabled}
                   required
                 />
@@ -124,7 +124,7 @@ export function SignUp() {
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
                   placeholder="••••••••"
-                  className="pl-10 rounded-lg border-neutral-300 focus:border-blue-500"
+                  className="pl-10 rounded-lg border-neutral-300 bg-white/90 focus:border-violet-400"
                   disabled={authDisabled}
                   required
                 />
@@ -134,11 +134,11 @@ export function SignUp() {
             {/* Terms & Conditions */}
             <p className="text-xs text-neutral-500">
               By signing up, you agree to our{' '}
-              <a href="#" className="text-blue-600 hover:underline">
+              <a href="#" className="text-violet-700 hover:underline">
                 Terms of Service
               </a>{' '}
               and{' '}
-              <a href="#" className="text-blue-600 hover:underline">
+              <a href="#" className="text-violet-700 hover:underline">
                 Privacy Policy
               </a>
             </p>
@@ -147,7 +147,7 @@ export function SignUp() {
             <Button
               type="submit"
               disabled={authDisabled || isSubmitting}
-              className="w-full rounded-lg bg-blue-600 hover:bg-blue-700 h-11 text-base font-medium"
+              className="h-11 w-full rounded-lg bg-gradient-to-r from-slate-950 via-violet-700 to-amber-400 text-base font-medium text-white shadow-[0_16px_30px_-18px_rgba(76,29,149,0.8)] hover:opacity-95"
             >
               {authDisabled ? 'Setup required' : isSubmitting ? 'Creating account...' : 'Create Account'}
               <ArrowRight className="ml-2" size={18} />
@@ -212,7 +212,7 @@ export function SignUp() {
           {/* Login Link */}
           <p className="mt-6 text-center text-sm text-neutral-600">
             Already have an account?{' '}
-            <Link to="/login" className="text-blue-600 hover:underline font-medium">
+            <Link to="/login" className="font-medium text-violet-700 hover:underline">
               Sign in
             </Link>
           </p>

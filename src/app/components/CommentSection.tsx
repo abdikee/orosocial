@@ -35,16 +35,18 @@ export function CommentSection({ comments, currentUser, onAddComment }: CommentS
       <ScrollArea className="flex-1 p-4">
         <div className="space-y-4">
           {comments.length === 0 ? (
-            <p className="text-center text-neutral-500 py-8">No comments yet. Be the first to comment!</p>
+            <div className="rounded-[24px] border border-dashed border-violet-200 bg-violet-50/40 px-6 py-10 text-center text-neutral-500">
+              No comments yet. Be the first to comment!
+            </div>
           ) : (
             comments.map((comment) => (
               <div key={comment.id} className="flex gap-3">
-                <Avatar className="w-8 h-8 flex-shrink-0">
+                <Avatar className="h-8 w-8 flex-shrink-0 ring-2 ring-violet-100">
                   <AvatarImage src={comment.avatar} alt={comment.username} />
                   <AvatarFallback>{comment.username.charAt(0).toUpperCase()}</AvatarFallback>
                 </Avatar>
                 <div className="flex-1">
-                  <div className="bg-neutral-100 rounded-lg px-3 py-2">
+                  <div className="rounded-2xl border border-neutral-200 bg-white px-4 py-3 shadow-sm">
                     <p className="font-semibold text-sm text-neutral-900">{comment.username}</p>
                     <p className="text-neutral-800 text-sm mt-1">{comment.content}</p>
                   </div>
@@ -57,9 +59,9 @@ export function CommentSection({ comments, currentUser, onAddComment }: CommentS
       </ScrollArea>
 
       {/* Add Comment Form */}
-      <div className="border-t border-neutral-200 p-4">
+      <div className="border-t border-neutral-200 bg-white/80 p-4 backdrop-blur-sm">
         <form onSubmit={handleSubmit} className="flex items-center gap-3">
-          <Avatar className="w-8 h-8 flex-shrink-0">
+          <Avatar className="h-8 w-8 flex-shrink-0 ring-2 ring-violet-100">
             <AvatarImage src={currentUser?.avatar} alt={currentUser?.name} />
             <AvatarFallback>{(currentUser?.name || 'U').charAt(0)}</AvatarFallback>
           </Avatar>
@@ -67,13 +69,13 @@ export function CommentSection({ comments, currentUser, onAddComment }: CommentS
             value={newComment}
             onChange={(e) => setNewComment(e.target.value)}
             placeholder="Add a comment..."
-            className="flex-1 rounded-full border-neutral-300 focus:border-blue-500"
+            className="flex-1 rounded-full border-neutral-200 bg-white focus:border-violet-400"
           />
           <Button
             type="submit"
             size="icon"
             disabled={!newComment.trim() || submitting}
-            className="rounded-full bg-blue-600 hover:bg-blue-700 disabled:bg-neutral-300"
+            className="rounded-full bg-gradient-to-r from-slate-950 via-violet-700 to-amber-400 text-white hover:opacity-95 disabled:bg-neutral-300"
           >
             <Send size={18} />
           </Button>

@@ -52,7 +52,7 @@ export function NavigationBar({ onCreatePost, currentUser }: NavigationBarProps)
             <Link
               to="/"
               className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-colors ${
-                isActive('/') ? 'text-blue-600 bg-blue-50' : 'text-neutral-700 hover:bg-neutral-100'
+                isActive('/') ? 'bg-violet-50 text-violet-700' : 'text-neutral-700 hover:bg-neutral-100'
               }`}
             >
               <Home size={20} />
@@ -70,7 +70,7 @@ export function NavigationBar({ onCreatePost, currentUser }: NavigationBarProps)
             <Link
               to={`/profile/${resolvedUser?.id || ''}`}
               className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-colors ${
-                location.pathname.includes('/profile') ? 'text-blue-600 bg-blue-50' : 'text-neutral-700 hover:bg-neutral-100'
+                location.pathname.includes('/profile') ? 'bg-violet-50 text-violet-700' : 'text-neutral-700 hover:bg-neutral-100'
               }`}
             >
               <User size={20} />
@@ -79,7 +79,7 @@ export function NavigationBar({ onCreatePost, currentUser }: NavigationBarProps)
 
             <button className="p-2 rounded-lg text-neutral-700 hover:bg-neutral-100 transition-colors relative">
               <Bell size={20} />
-              <span className="absolute top-1 right-1 w-2 h-2 bg-blue-600 rounded-full"></span>
+              <span className="absolute top-1 right-1 h-2 w-2 rounded-full bg-violet-600"></span>
             </button>
 
             {resolvedUser && (
@@ -105,7 +105,7 @@ export function NavigationBar({ onCreatePost, currentUser }: NavigationBarProps)
           <div className="flex items-center gap-3">
             <button className="p-2 rounded-lg text-neutral-700 hover:bg-neutral-100 transition-colors relative">
               <Bell size={20} />
-              <span className="absolute top-1 right-1 w-2 h-2 bg-blue-600 rounded-full"></span>
+              <span className="absolute top-1 right-1 h-2 w-2 rounded-full bg-violet-600"></span>
             </button>
             <button
               onClick={() => setShowMobileMenu(!showMobileMenu)}
@@ -123,7 +123,7 @@ export function NavigationBar({ onCreatePost, currentUser }: NavigationBarProps)
               to="/"
               onClick={() => setShowMobileMenu(false)}
               className={`flex items-center gap-3 px-4 py-3 ${
-                isActive('/') ? 'text-blue-600 bg-blue-50' : 'text-neutral-700'
+                isActive('/') ? 'bg-violet-50 text-violet-700' : 'text-neutral-700'
               }`}
             >
               <Home size={20} />
@@ -143,7 +143,7 @@ export function NavigationBar({ onCreatePost, currentUser }: NavigationBarProps)
               to={`/profile/${resolvedUser?.id || ''}`}
               onClick={() => setShowMobileMenu(false)}
               className={`flex items-center gap-3 px-4 py-3 ${
-                location.pathname.includes('/profile') ? 'text-blue-600 bg-blue-50' : 'text-neutral-700'
+                location.pathname.includes('/profile') ? 'bg-violet-50 text-violet-700' : 'text-neutral-700'
               }`}
             >
               <User size={20} />
@@ -168,7 +168,7 @@ export function NavigationBar({ onCreatePost, currentUser }: NavigationBarProps)
           <Link
             to="/"
             className={`flex flex-col items-center gap-1 px-4 py-2 rounded-lg transition-colors ${
-              isActive('/') ? 'text-blue-600' : 'text-neutral-700'
+              isActive('/') ? 'text-violet-700' : 'text-neutral-700'
             }`}
           >
             <Home size={24} />
@@ -178,7 +178,7 @@ export function NavigationBar({ onCreatePost, currentUser }: NavigationBarProps)
           <Link
             to="/search"
             className={`flex flex-col items-center gap-1 px-4 py-2 rounded-lg transition-colors ${
-              isActive('/search') ? 'text-blue-600' : 'text-neutral-700'
+              isActive('/search') ? 'text-violet-700' : 'text-neutral-700'
             }`}
           >
             <Search size={24} />
@@ -196,7 +196,7 @@ export function NavigationBar({ onCreatePost, currentUser }: NavigationBarProps)
           <Link
             to={`/profile/${resolvedUser?.id || ''}`}
             className={`flex flex-col items-center gap-1 px-4 py-2 rounded-lg transition-colors ${
-              location.pathname.includes('/profile') ? 'text-blue-600' : 'text-neutral-700'
+              location.pathname.includes('/profile') ? 'text-violet-700' : 'text-neutral-700'
             }`}
           >
             <User size={24} />
